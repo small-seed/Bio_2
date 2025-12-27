@@ -1,0 +1,5 @@
+sample,condition,fastq1,fastq2
+SRR031714,control,data/fastq/SRR031714_1.fastq.gz,data/fastq/SRR031714_2.fastq.gz
+SRR031716,control,data/fastq/SRR031716_1.fastq.gz,data/fastq/SRR031716_2.fastq.gz
+SRR031724,treated,data/fastq/SRR031724_1.fastq.gz,data/fastq/SRR031724_2.fastq.gz
+SRR031726,treated,data/fastq/SRR031726_1.fastq.gz,data/fastq/SRR031726_2.fastq.gz
