@@ -12,10 +12,13 @@ The goal of this project is **educational and technical practice**, not biologic
 
 - Pipeline type: Reference-based RNA-seq analysis
 - Organism: *Drosophila melanogaster*
-- Reference genome: Ensembl BDGP6 (release 95)
-- Annotation: Ensembl GTF (release 95)
+- Reference genome: Ensembl BDGP6.54 (release 115)
+- Annotation: Ensembl GTF (release 115)
+- Quality control: FastQC, MultiQC
 - Alignment tool: STAR
-- Language: Python
+- Counting tool: featureCounts
+- Differential expression: DESeq2
+- Language: Python (orchestration), R (DE analysis)
 - Platform: Windows (WSL / local execution), **not HPC Linux**
 
 Compared to the original Galaxy tutorial, this implementation:

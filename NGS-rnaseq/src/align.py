@@ -1,5 +1,3 @@
-# src/align.py
-#!/usr/bin/env python3
 from __future__ import annotations
 
 import argparse
@@ -18,7 +16,7 @@ from utils import (
 # Keep align.py generic: full-pipeline.py can override these via CLI args
 DEFAULT_PROJECT_ROOT = r"D:\Code\Bio_2\NGS-RNASEQ"
 
-# Canonical "stable" reference paths (you can create symlinks to versioned files)
+# Default "stable" reference paths 
 DEFAULT_GENOME_FASTA = Path("reference/genome.fa")
 DEFAULT_ANNOT_GTF = Path("reference/genes.gtf")
 DEFAULT_STAR_INDEX = Path("reference/star_index/BDGP6.54_115")
@@ -64,6 +62,7 @@ def ensure_star_index(
         str(sjdb_overhang),
     ]
     run_cmd(cmd, log_file)
+
 
 
 def star_output_bam(sample_outdir: Path) -> Path:
@@ -120,7 +119,7 @@ def run_star_one(
             p.replace(sample_outdir / name)
 
 
-def rna_aligment() -> None:
+def STAR_alignment() -> None:
     parser = argparse.ArgumentParser(
         description="Alignment stage: STAR per sample (samples.csv), coordinate-sorted BAM."
     )
