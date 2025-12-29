@@ -5,30 +5,29 @@ from pathlib import Path
 
 from qc import QC_run
 from align import STAR_alignment
+from count import featureCounts_run
 
-
-# --- Absolute project root (Windows). utils.normalize_project_root will convert if running in WSL.
 PROJECT_ROOT = r"D:\Code\Bio_2\NGS-rnaseq"
 
-# --- Config
 SAMPLES_CSV = Path("config/samples.csv")
 
-# --- Reference paths
 GENOME_FASTA = Path("reference/genome/genome.fa")
 ANNOT_GTF = Path("reference/annotation/genes.gtf")
 STAR_INDEX_DIR = Path("reference/star_index/BDGP6.54_115")
 
 
 def run_pipeline(
-    *,                             # make sure everything must be passed as a keyword argument
-    qc_threads: int = 2,           # QC set up
-    qc_jobs: int = 2,              # QC set up
-    star_threads: int = 8,         # STAR set up
-    star_jobs: int = 1,            # STAR set up
-    sjdb_overhang: int = 49,       # STAR set up: read_length - 1 
-    build_star_index: bool = True, # STAR set up: True first time; False after index exists
-    force_index: bool = False,     # STAR set up
-    force: bool = False,           # STAR set up
+    *,
+    qc_threads: int = 2,
+    qc_jobs: int = 2,
+    star_threads: int = 8,
+    star_jobs: int = 1,
+    sjdb_overhang: int = 49,
+    build_star_index: bool = True,
+    force_index: bool = False,
+    count_threads: int = 8,
+    count_stranded: int = 0,   # 0/1/2
+    force: bool = False,
 ) -> None:
     # 1) QC
     QC_run(
@@ -51,5 +50,15 @@ def run_pipeline(
         build_index=build_star_index,
         force_index=force_index,
         sjdb_overhang=sjdb_overhang,
+        force=force,
+    )
+
+    # 3) Counting
+    featureCounts_run(
+        project_root=PROJECT_ROOT,
+        samples_csv=SAMPLES_CSV,
+        annotation_gtf=ANNOT_GTF,
+        threads=count_threads,
+        stranded=count_stranded,
         force=force,
     )

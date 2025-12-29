@@ -1,4 +1,3 @@
-# src/count.py
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,14 +13,6 @@ class CountOutputs:
 
 
 def _detect_paired_end(samples) -> bool:
-    """
-    Determine whether to run featureCounts in paired-end mode (-p).
-
-    Rules:
-    - If ALL samples have read2 -> paired-end
-    - If ALL samples have no read2 -> single-end
-    - If mixed -> raise (pipeline consistency)
-    """
     has_r2 = [(s.read2 is not None) for s in samples]
     if all(has_r2):
         return True
@@ -34,10 +25,6 @@ def _detect_paired_end(samples) -> bool:
 
 
 def _collect_bams(project_root: Path, samples) -> List[Path]:
-    """
-    Collect STAR output BAMs based on your canonical layout:
-      results/align/<sample>/Aligned.sortedByCoord.out.bam
-    """
     bams: List[Path] = []
     missing: List[str] = []
 
@@ -62,7 +49,7 @@ def featureCounts_run(
     samples_csv: Path,
     annotation_gtf: Path,
     threads: int = 8,
-    stranded: int = 0,         # 0=unstranded, 1=stranded, 2=reverse
+    stranded: int = 0,           # 0=unstranded, 1=stranded, 2=reverse
     force: bool = False,
     feature_type: str = "exon",  # -t
     gene_attr: str = "gene_id",  # -g
@@ -124,7 +111,7 @@ def featureCounts_run(
         "-s", str(stranded),
     ]
 
-    # Paired-end fragment counting (recommended when read2 exists)
+    # Paired-end fragment counting (when read2 exists)
     if paired_end:
         cmd += ["-p", "-B", "-C"]
 

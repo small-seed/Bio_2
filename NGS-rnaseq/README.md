@@ -80,6 +80,16 @@ Original tutorial and data description:
 
 > ARTbio Galaxy Training – Reference-based RNA-seq analysis  
 > https://artbio.github.io/startbio/reference_based_RNAseq/
+FastQC: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+
+>MultiQC: https://multiqc.info/docs/
+>STAR manual: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf
+>STAR tutorial (HBC): https://hbctraining.github.io/Intro-to-rnaseq-hpc/lessons/03_alignment.html
+>featureCounts: https://subread.sourceforge.net/
+>DESeq2 vignette: https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
+>Bioconductor RNA-seq workflow: https://bioconductor.org/help/workflows/rnaseqGene/
+
 
 ---
 
